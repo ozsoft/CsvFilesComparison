@@ -1,0 +1,12 @@
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/bin/Debug/netcoreapp3.1/CsvFilesComparison.deps.json
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/bin/Debug/netcoreapp3.1/CsvFilesComparison.runtimeconfig.json
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/bin/Debug/netcoreapp3.1/CsvFilesComparison.runtimeconfig.dev.json
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/bin/Debug/netcoreapp3.1/CsvFilesComparison.dll
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/bin/Debug/netcoreapp3.1/CsvFilesComparison.pdb
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.csprojAssemblyReference.cache
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.AssemblyInfoInputs.cache
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.AssemblyInfo.cs
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.csproj.CoreCompileInputs.cache
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.dll
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.pdb
+/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/Debug/netcoreapp3.1/CsvFilesComparison.genruntimeconfig.cache
