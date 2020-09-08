@@ -6,6 +6,40 @@ namespace CsvFilesComparison
     class Program
     {
 
+        public enum FailureLevel
+        {
+            Low,
+            Medium,
+            High
+        }
+
+
+
+        public FailureLevel PricingDiscrepancy(double priceCsv1, double priceCsv2)
+        {
+            double priceDiscrepancy = priceCsv1 - priceCsv2;
+            priceDiscrepancy = Math.Abs(priceDiscrepancy);
+
+            if (priceDiscrepancy < 0.01)
+            {
+                return FailureLevel.Low;
+
+            }
+            else if (priceDiscrepancy < 0.1)
+            {
+                return FailureLevel.Medium;
+
+            }
+            else
+            {
+                return FailureLevel.High;
+
+            }
+
+
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -21,7 +55,20 @@ namespace CsvFilesComparison
             // TODO : make price tolerance configurable
             // TODO : write report to text file
 
+            Program p = new Program();
 
+            FailureLevel f1 = p.PricingDiscrepancy(43.33, 41.43);
+
+            Console.WriteLine(f1);
+
+            FailureLevel f2 = p.PricingDiscrepancy(42.33, 42.42);
+
+            Console.WriteLine(f2);
+
+
+            FailureLevel f3 = p.PricingDiscrepancy(42.331, 42.322);
+
+            Console.WriteLine(f3);
 
 
             DateTime now = DateTime.Now;
