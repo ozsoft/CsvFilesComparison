@@ -15,30 +15,7 @@ namespace CsvFilesComparison
 
 
 
-        public FailureLevel PricingDiscrepancy(double priceCsv1, double priceCsv2)
-        {
-            double priceDiscrepancy = priceCsv1 - priceCsv2;
-            priceDiscrepancy = Math.Abs(priceDiscrepancy);
 
-            if (priceDiscrepancy < 0.01)
-            {
-                return FailureLevel.Low;
-
-            }
-            else if (priceDiscrepancy < 0.1)
-            {
-                return FailureLevel.Medium;
-
-            }
-            else
-            {
-                return FailureLevel.High;
-
-            }
-
-
-
-        }
 
         static void Main(string[] args)
         {
@@ -323,7 +300,30 @@ namespace CsvFilesComparison
 
 
 
+        public FailureLevel PricingDiscrepancy(double priceCsv1, double priceCsv2)
+        {
+            double priceDiscrepancy = priceCsv1 - priceCsv2;
+            priceDiscrepancy = Math.Abs(priceDiscrepancy);
 
+            if (priceDiscrepancy < 0.01)
+            {
+                return FailureLevel.Low;
+
+            }
+            else if (priceDiscrepancy < 0.1)
+            {
+                return FailureLevel.Medium;
+
+            }
+            else
+            {
+                return FailureLevel.High;
+
+            }
+
+
+
+        }
 
 
     }
