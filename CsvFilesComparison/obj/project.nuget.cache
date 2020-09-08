@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HzYLGfr8UyQ6ncaH2n7ReIz3g3ViuHHUqVITZ8nMQXznWhNGvJmtllstEX3MTp9hUIv/cZO3Zw//txFQ+Q8qyA==",
+  "dgSpecHash": "ILWUdJIgCBZCJwQL3k9wHksbX2Z15vlQAPhFBeATZ6Po918IJNA74M2KL7xMTFJYEWrNaRTE5bo8RORbJSpiaQ==",
   "success": true,
-  "projectFilePath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
+  "projectFilePath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

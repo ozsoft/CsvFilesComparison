@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj": {}
+    "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj": {}
   },
   "projects": {
-    "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj": {
+    "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
+        "projectUniqueName": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
         "projectName": "CsvFilesComparison",
-        "projectPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
+        "projectPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
         "packagesPath": "/Users/ozgur/.nuget/packages/",
-        "outputPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/",
+        "outputPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ozgur/.config/NuGet/NuGet.Config"

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
+      "projectUniqueName": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
       "projectName": "CsvFilesComparison",
-      "projectPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
+      "projectPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CsvFilesComparison.csproj",
       "packagesPath": "/Users/ozgur/.nuget/packages/",
-      "outputPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparison/obj/",
+      "outputPath": "/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/ozgur/.config/NuGet/NuGet.Config"
