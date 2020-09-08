@@ -83,7 +83,7 @@ namespace CsvFilesComparison
                                 continue;
                             }
 
-                            Console.WriteLine("CSV 1 composite key in line {0} and CSV 2 composite key in line {1} does not match", csv1Index, csv2Index);
+                            Console.WriteLine("CSV 1 composite key on line {0} and CSV 2 composite key on line {1} does not match", csv1Index, csv2Index);
                             Console.WriteLine("CSV1 Composite: {0}, CSV2 Composite: {1}", csv1.GetLine(i).CompositeField, csv2.GetLine(i).CompositeField);
 
                             if (csv1.GetLine(i).CompositeField == csv2.GetLine(i + 1).CompositeField)
@@ -137,7 +137,7 @@ namespace CsvFilesComparison
                         int lineNumber = csv2Index;
                         lineNumber++;
 
-                        Console.WriteLine("Composite field is null for either CSV1 or CSV2 in line: " + lineNumber);
+                        Console.WriteLine("Composite field is null for either CSV1 or CSV2 in line: " + lineNumber + e);
 
                         break;
                     }

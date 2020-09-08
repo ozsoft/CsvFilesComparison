@@ -21,7 +21,7 @@ namespace CsvFilesComparison
             // TODO : make price tolerance configurable
             // TODO : write report to text file
 
-            //
+
 
 
             DateTime now = DateTime.Now;
