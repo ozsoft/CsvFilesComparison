@@ -27,11 +27,15 @@ namespace CsvFilesComparison
 
 
             // TODO : import from csv can convert to csv object
-            // TODO : weighted system for pricing
             // TODO : make mismtching line tolerence configurable
-            // TODO : make price tolerance configurable
             // TODO : write report to text file
 
+
+            // DONE : make price tolerance configurable
+            // DONE : weighted system for pricing
+
+
+            //Pricing discrepancy
             Program p = new Program();
 
             FailureLevel f1 = p.PricingDiscrepancy(43.33, 41.43);
@@ -48,8 +52,11 @@ namespace CsvFilesComparison
             Console.WriteLine(f3);
 
 
-            DateTime now = DateTime.Now;
 
+
+
+
+            DateTime now = DateTime.Now;
 
             Console.WriteLine("Test start tie: {0}", now);
             Console.ForegroundColor = ConsoleColor.White;
