@@ -35,6 +35,7 @@ namespace CsvFilesComparison
                 {
                     Console.WriteLine("CSV1 on Line: " + csv1Index + " matches " + "CSV2 on Line: " + csv2Index, Console.ForegroundColor);
 
+
                 }
 
 
@@ -43,7 +44,8 @@ namespace CsvFilesComparison
                 if (csv1.GetLine(i).CompositeField == csv2.GetLine(i).CompositeField && csv1.GetLine(i).PayLoad != csv2.GetLine(i).PayLoad)
                 {
                     Console.WriteLine("CSV1 composite key on Line: " + csv1Index + " matches " + "CSV2 composite key on Line: " + csv2Index +
-                        "but the payload does not match", Console.ForegroundColor);
+                        " however the payload does not match", Console.ForegroundColor);
+                    Console.WriteLine("CSV1 payload is: {0} and the CSV2 payload is: {1}", csv1.GetLine(i).PayLoad, csv2.GetLine(i).PayLoad);
 
                 }
 
@@ -51,13 +53,39 @@ namespace CsvFilesComparison
 
                 if (csv1.GetLine(i).CompositeField != csv2.GetLine(i).CompositeField)
                 {
-                    Console.WriteLine("CSV 1 composite key in line {0} and CSV 2 composite key in line {1} does not match", csv1Index, csv2Index);
 
                     try
                     {
 
                         if (i != count - 1)
                         {
+                            //check for test 8
+                            if (csv1.GetLine(i).CompositeField == csv2.GetLine(i + 1).CompositeField && csv1.GetLine(i + 1).CompositeField == csv2.GetLine(i).CompositeField)
+                            {
+                                int csv2IndexPlusOne = csv1Index + 1;
+                                int csv1IndexPlusOne = csv1Index + 1;
+
+                                if (csv1.GetLine(i).PayLoad == csv2.GetLine(i + 1).PayLoad)
+                                {
+                                    Console.WriteLine("Old and New programs printed csv files with incorrect index. CSV 1 index: {0} and CSV 2 index: {1}", csv1Index, csv2IndexPlusOne);
+                                }
+
+
+
+                                if (csv1.GetLine(i + 1).PayLoad == csv2.GetLine(i).PayLoad)
+                                {
+                                    Console.WriteLine("Old and New programs printed csv files with incorrect index. CSV 1 index: {0} and CSV 2 index: {1}", csv1IndexPlusOne, csv2Index);
+
+                                }
+
+                                i++;
+
+                                continue;
+                            }
+
+                            Console.WriteLine("CSV 1 composite key in line {0} and CSV 2 composite key in line {1} does not match", csv1Index, csv2Index);
+                            Console.WriteLine("CSV1 Composite: {0}, CSV2 Composite: {1}", csv1.GetLine(i).CompositeField, csv2.GetLine(i).CompositeField);
+
                             if (csv1.GetLine(i).CompositeField == csv2.GetLine(i + 1).CompositeField)
                             {
                                 var matchingCsv2Line = csv2Index + 1;

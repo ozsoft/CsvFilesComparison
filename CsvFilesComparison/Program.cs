@@ -24,6 +24,10 @@ namespace CsvFilesComparison
             //
 
 
+            DateTime now = DateTime.Now;
+
+
+            Console.WriteLine("Test start tie: {0}", now);
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("--------TEST 1---------");
@@ -207,6 +211,7 @@ namespace CsvFilesComparison
                 1    SAA    DDS
                 2    GBP    SAA
                 3    TDD    GBP
+                4    ..     TDD
 
             Transform to:
                 ln   csv1    csv2
@@ -233,6 +238,38 @@ namespace CsvFilesComparison
 
             CompareCsvFiles test7 = new CompareCsvFiles();
             test7.CompareCsvs(test7_csv1, test7_csv2);
+
+
+
+
+
+
+
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("--------TEST 8---------");
+            //program 1 and program 2 spits out output to csv files in different orders
+            //i.e. index 1 in csv 1 is index 2 in csv 2
+            //and index 2 in csv 1 is index 1 in csv 2
+
+
+
+            Csv test8_csv1 = new Csv();
+            test8_csv1.AddLine(0, "ABC", "GBP,233232,London");
+            test8_csv1.AddLine(1, "SAA", "GBP,233232,London");
+            test8_csv1.AddLine(2, "DDS", "GBP,233232,London");
+            test8_csv1.AddLine(3, "TDD", "GBP,233232,London");
+
+
+            Csv test8_csv2 = new Csv();
+            test8_csv2.AddLine(0, "ABC", "GBP,233232,London");
+            test8_csv2.AddLine(1, "DDS", "GBP,233232,London");
+            test8_csv2.AddLine(2, "SAA", "GBP,233232,London");
+            test8_csv2.AddLine(3, "TDD", "GBP,233232,London");
+
+
+            CompareCsvFiles test8 = new CompareCsvFiles();
+            test8.CompareCsvs(test8_csv1, test8_csv2);
 
 
         }
