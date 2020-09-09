@@ -13,9 +13,9 @@ namespace CsvFilesComparison
 
         List<CsvLine> lines = new List<CsvLine>();
 
-        public void AddLine(int index, string composite, string payload)
+        public void AddLine(string composite, string payload, double price)
         {
-            lines.Add(new CsvLine { Index = index, CompositeField = composite, PayLoad = payload });
+            lines.Add(new CsvLine { CompositeField = composite, PayLoad = payload, Price = price });
         }
 
 

@@ -36,6 +36,7 @@ namespace CsvFilesComparison
             //          1. if composite keys match, check payload matches and report result
             //          2. if composite keys do not match, report that composite keys do not match and the line of mistmatch
             //          3. if we notice that either csv 1 or csv 2 are missing a single line (i.e. composite key matches in the next line) then report a missing line in csv and continue comparing
+            //          4. does not handle multiple line missing
 
 
 
@@ -107,32 +108,17 @@ namespace CsvFilesComparison
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("--------TEST 1---------");
-            //Missing line in CSV 2
-            /*
-                    scenario 1:  
-                    ln    csv1    csv2
-                    0    ABC    DDS
-                    1    DDS    SAA
-                    2    SAA
 
-
-            Transform to this and continue comparing
-                    ln    csv1    csv2
-                    0    ABC    DDS
-                    1    DDS    DDS
-                    2    SAA    SAA
-             
-             */
 
             Csv test1_csv1 = new Csv();
-            test1_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test1_csv1.AddLine(1, "DDS", "GBP,233232,London");
-            test1_csv1.AddLine(2, "SAA", "GBP,233232,London");
+            test1_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test1_csv1.AddLine("DDS", "GBP,233232,London", 123.56);
+            test1_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
             Csv test1_csv2 = new Csv();
-            test1_csv2.AddLine(0, "DDS", "GBP,233232,London");
-            test1_csv2.AddLine(1, "SAA", "GBP,233232,London");
+            test1_csv2.AddLine("DDS", "GBP,233232,London", 123.56);
+            test1_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
 
@@ -150,15 +136,15 @@ namespace CsvFilesComparison
             Console.WriteLine("--------TEST 2---------");
             //entire csvs match
             Csv test2_csv1 = new Csv();
-            test2_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test2_csv1.AddLine(1, "DDS", "GBP,233232,London");
-            test2_csv1.AddLine(2, "SAA", "GBP,233232,London");
+            test2_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test2_csv1.AddLine("DDS", "GBP,233232,London", 123.56);
+            test2_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
             Csv test2_csv2 = new Csv();
-            test2_csv2.AddLine(0, "ABC", "GBP,233232,London");
-            test2_csv2.AddLine(1, "DDS", "GBP,233232,London");
-            test2_csv2.AddLine(2, "SAA", "GBP,233232,London");
+            test2_csv2.AddLine("ABC", "GBP,233232,London", 123.56);
+            test2_csv2.AddLine("DDS", "GBP,233232,London", 123.56);
+            test2_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
 
@@ -173,15 +159,14 @@ namespace CsvFilesComparison
             //payload does not match but composite key matches
 
             Csv test3_csv1 = new Csv();
-            test3_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test3_csv1.AddLine(1, "DDS", "YYY,233232,London");
-            test3_csv1.AddLine(2, "SAA", "GBP,233232,London");
-
+            test3_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test3_csv1.AddLine("DDS", "YYY,233232,London", 123.56);
+            test3_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
 
             Csv test3_csv2 = new Csv();
-            test3_csv2.AddLine(0, "ABC", "GBP,233232,London");
-            test3_csv2.AddLine(1, "DDS", "ZZZ,233232,London");
-            test3_csv2.AddLine(2, "SAA", "GBP,233232,London");
+            test3_csv2.AddLine("ABC", "GBP,233232,London", 123.56);
+            test3_csv2.AddLine("DDS", "ZZZ,233232,London", 123.56);
+            test3_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
 
@@ -198,15 +183,15 @@ namespace CsvFilesComparison
 
 
             Csv test4_csv1 = new Csv();
-            test4_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test4_csv1.AddLine(1, "DDS", "YYY,233232,London");
-            test4_csv1.AddLine(2, "SAA", "GBP,233232,London");
+            test4_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test4_csv1.AddLine("DDS", "YYY,233232,London", 123.56);
+            test4_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
             Csv test4_csv2 = new Csv();
-            test4_csv2.AddLine(0, "FFF", "GBP,233232,London");
-            test4_csv2.AddLine(1, "SSS", "ZZZ,233232,London");
-            test4_csv2.AddLine(2, "CCC", "GBP,233232,London");
+            test4_csv2.AddLine("FFF", "GBP,233232,London", 123.56);
+            test4_csv2.AddLine("SSS", "ZZZ,233232,London", 123.56);
+            test4_csv2.AddLine("CCC", "GBP,233232,London", 123.56);
 
 
 
@@ -219,29 +204,15 @@ namespace CsvFilesComparison
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("--------TEST 5---------");
-            //missing line in CSV 1
-
-
-            /*
-             
-                scenario 2:
-                ln   csv1    csv2
-                0    DDS    ABC
-                1    SAA    DDS
-                2           SAA
-
-             
-             */
 
             Csv test5_csv1 = new Csv();
-            test5_csv1.AddLine(0, "DDS", "GBP,233232,London");
-            test5_csv1.AddLine(1, "SAA", "GBP,233232,London");
-
+            test5_csv1.AddLine("DDS", "GBP,233232,London", 123.56);
+            test5_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
 
             Csv test5_csv2 = new Csv();
-            test5_csv2.AddLine(0, "ABC", "GBP,233232,London");
-            test5_csv2.AddLine(1, "DDS", "GBP,233232,London");
-            test5_csv2.AddLine(2, "SAA", "GBP,233232,London");
+            test5_csv2.AddLine("ABC", "GBP,233232,London", 123.56);
+            test5_csv2.AddLine("DDS", "GBP,233232,London", 123.56);
+            test5_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
 
 
 
@@ -257,17 +228,17 @@ namespace CsvFilesComparison
 
 
             Csv test6_csv1 = new Csv();
-            test6_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test6_csv1.AddLine(1, "SAA", "GBP,233232,London");
-            test6_csv1.AddLine(2, "AAA", "GBP,233232,London");
-            test6_csv1.AddLine(3, "BBB", "GBP,233232,London");
+            test6_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test6_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
+            test6_csv1.AddLine("AAA", "GBP,233232,London", 123.56);
+            test6_csv1.AddLine("BBB", "GBP,233232,London", 123.56);
 
 
             Csv test6_csv2 = new Csv();
-            test6_csv2.AddLine(0, "ABC", "GBP,233232,London");
-            test6_csv2.AddLine(1, "SAA", "GBP,233232,London");
-            test6_csv2.AddLine(2, "XXX", "GBP,233232,London");
-            test6_csv2.AddLine(3, "YYY", "GBP,233232,London");
+            test6_csv2.AddLine("ABC", "GBP,233232,London", 123.56);
+            test6_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
+            test6_csv2.AddLine("XXX", "GBP,233232,London", 123.56);
+            test6_csv2.AddLine("YYY", "GBP,233232,London", 123.56);
 
 
             CompareCsvFiles test6 = new CompareCsvFiles();
@@ -280,36 +251,20 @@ namespace CsvFilesComparison
 
             Console.WriteLine("--------TEST 7---------");
             //missing line after a successful matching line
-            /*
-             scenario 3:
-                ln   csv1    csv2
-                0    ABC    ABC
-                1    SAA    DDS
-                2    GBP    SAA
-                3    TDD    GBP
-                4    ..     TDD
 
-            Transform to:
-                ln   csv1    csv2
-                0    ABC    ABC
-                1    SAA    DDS
-                2    SAA    SAA
-                3    GBP    GBP
-
-             */
 
             Csv test7_csv1 = new Csv();
-            test7_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test7_csv1.AddLine(1, "SAA", "GBP,233232,London");
-            test7_csv1.AddLine(2, "GBP", "GBP,233232,London");
-            test7_csv1.AddLine(3, "TDD", "GBP,233232,London");
+            test7_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test7_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
+            test7_csv1.AddLine("GBP", "GBP,233232,London", 123.56);
+            test7_csv1.AddLine("TDD", "GBP,233232,London", 123.56);
 
 
             Csv test7_csv2 = new Csv();
-            test7_csv2.AddLine(0, "ABC", "GBP,233232,London");
-            test7_csv2.AddLine(1, "DDS", "GBP,233232,London");
-            test7_csv2.AddLine(2, "SAA", "GBP,233232,London");
-            test7_csv2.AddLine(3, "GBP", "GBP,233232,London");
+            test7_csv2.AddLine("ABC", "GBP,233232,London", 123.56);
+            test7_csv2.AddLine("DDS", "GBP,233232,London", 123.56);
+            test7_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
+            test7_csv2.AddLine("GBP", "GBP,233232,London", 123.56);
 
 
             CompareCsvFiles test7 = new CompareCsvFiles();
@@ -331,22 +286,34 @@ namespace CsvFilesComparison
 
 
             Csv test8_csv1 = new Csv();
-            test8_csv1.AddLine(0, "ABC", "GBP,233232,London");
-            test8_csv1.AddLine(1, "SAA", "GBP,233232,London");
-            test8_csv1.AddLine(2, "DDS", "GBP,233232,London");
-            test8_csv1.AddLine(3, "TDD", "GBP,233232,London");
+            test8_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
+            test8_csv1.AddLine("SAA", "GBP,233232,London", 123.56);
+            test8_csv1.AddLine("DDS", "GBP,233232,London", 123.56);
+            test8_csv1.AddLine("TDD", "GBP,233232,London", 123.56);
 
 
             Csv test8_csv2 = new Csv();
-            test8_csv2.AddLine(0, "ABC", "GBP,233232,London");
-            test8_csv2.AddLine(1, "DDS", "GBP,233232,London");
-            test8_csv2.AddLine(2, "SAA", "GBP,233232,London");
-            test8_csv2.AddLine(3, "TDD", "GBP,233232,London");
+            test8_csv2.AddLine("ABC", "GBP,233232,London", 123.56);
+            test8_csv2.AddLine("DDS", "GBP,233232,London", 123.56);
+            test8_csv2.AddLine("SAA", "GBP,233232,London", 123.56);
+            test8_csv2.AddLine("TDD", "GBP,233232,London", 123.56);
 
 
             CompareCsvFiles test8 = new CompareCsvFiles();
             test8.CompareCsvs(test8_csv1, test8_csv2);
 
+
+
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("--------TEST 9---------");
+            //no records in csvs
+
+            Csv test9_csv1 = new Csv();
+            Csv test9_csv2 = new Csv();
+
+            CompareCsvFiles test9 = new CompareCsvFiles();
+            test9.CompareCsvs(test9_csv1, test9_csv2);
 
         }
 

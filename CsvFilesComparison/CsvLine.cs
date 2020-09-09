@@ -8,21 +8,21 @@ namespace CsvFilesComparison
         }
 
 
-        private int index;
+        private double price;
         private string compositeField;
         private string payload;
 
 
-        public int Index
+        public double Price
         {
             get
             {
-                return index;
+                return price;
             }
 
             set
             {
-                index = value;
+                price = value;
             }
         }
 
