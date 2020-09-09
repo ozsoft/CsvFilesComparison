@@ -315,6 +315,43 @@ namespace CsvFilesComparison
             CompareCsvFiles test9 = new CompareCsvFiles();
             test9.CompareCsvs(test9_csv1, test9_csv2);
 
+
+
+
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("--------TEST 10---------");
+
+            Csv test10_csv1 = new Csv();
+            test10_csv1.AddLine("AAA", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("BBB", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("CCC", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("DDD", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("EEE", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("FFF", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("GGG", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("HHH", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("III", "GBP,233232,London", 123.56);
+            test10_csv1.AddLine("JJJ", "GBP,233232,London", 123.56);
+
+
+            Csv test10_csv2 = new Csv();
+            test10_csv2.AddLine("AAA", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("BBB", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("CCC", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("HHH", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("III", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("JJJ", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("KKK", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("LLL", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("MMM", "GBP,233232,London", 123.56);
+            test10_csv2.AddLine("NNN", "GBP,233232,London", 123.56);
+
+
+            CompareCsvFiles test10 = new CompareCsvFiles();
+            test10.CompareCsvs(test10_csv1, test10_csv2);
+
+
         }
 
 
