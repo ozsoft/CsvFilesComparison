@@ -68,6 +68,10 @@ namespace CsvFilesComparison
                         //to avoid comparing i+1=null at the end of the for loop
                         if (i != count - 1)
                         {
+
+
+
+
                             //check for test 8
                             if (csv1.GetLine(i).CompositeField == csv2.GetLine(i + 1).CompositeField && csv1.GetLine(i + 1).CompositeField == csv2.GetLine(i).CompositeField)
                             {
@@ -92,18 +96,17 @@ namespace CsvFilesComparison
                                 continue;
                             }
 
-                            Console.WriteLine("({0},{1}) CSV1 ({2}) and CSV2 ({3}) composite keys do not match", csv1Index, csv2Index, csv1.GetLine(i).CompositeField, csv2.GetLine(i).CompositeField);
 
 
 
-
+                            bool foundMismatchingLine = false;
                             //find multiple missing lines
                             if (csv1.GetLine(i).CompositeField != csv2.GetLine(i + 1).CompositeField && csv1.GetLine(i + 1).CompositeField != csv2.GetLine(i).CompositeField)
                             {
 
-
                                 //find multple lines missing in csv1
                                 int countOfMissingLines = 0;
+
                                 try
                                 {
 
@@ -116,11 +119,17 @@ namespace CsvFilesComparison
                                             Console.ForegroundColor = ConsoleColor.Blue;
 
                                             Console.WriteLine("CSV1 is missing this many lines: {0}", countOfMissingLines);
+                                            foundMismatchingLine = true;
 
                                             //check payload matches
                                             if (csv1.GetLine(i).PayLoad == csv2.GetLine(j + 1).PayLoad)
                                             {
                                                 Console.WriteLine("({0},{1}) lines payload matches between CSV1 and CSV2}", i, j + 1);
+
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("({0},{1}) lines payload does NOT matches between CSV1 and CSV2}", i, j + 1);
 
                                             }
 
@@ -135,7 +144,7 @@ namespace CsvFilesComparison
                                 }
                                 catch (Exception e)
                                 {
-                                    Console.WriteLine("We have more lines to compare but one of the csvs reached the end", e);
+
                                 }
 
 
@@ -155,12 +164,20 @@ namespace CsvFilesComparison
 
                                             Console.WriteLine("CSV2 is missing this many lines: {0}", countOfMissingLines);
 
+                                            foundMismatchingLine = true;
+
                                             //check payload matches
                                             if (csv1.GetLine(j + 1).PayLoad == csv2.GetLine(i).PayLoad)
                                             {
-                                                Console.WriteLine("({0},{1}) Payload matches between csv2 currentline: {0} and csv1 currentline: {1}", i, j + 1);
+                                                Console.WriteLine("({0},{1}) Payload matches between CSV2 currentline: {1} and CSV1 currentline: {0}", j + 1, i);
 
                                             }
+                                            else
+                                            {
+                                                Console.WriteLine("({0},{1}) Payload does NOT matches between CSV1 and CSV2}", j + 1, i);
+
+                                            }
+                                            Console.WriteLine("({0},{1}) Composite Key matches between CSV1 currentline: {0}, CSV2 currentline: {1}", csv1.GetLine(j + 1).CompositeField, csv2.GetLine(i).CompositeField);
 
 
                                             //established that we are missing lines in csv2, so shift the index so we can continue comparing the remaining lines
@@ -175,12 +192,17 @@ namespace CsvFilesComparison
                                 }
                                 catch (Exception e)
                                 {
-                                    Console.WriteLine("We have more lines to compare but one of the csvs reached the end", e);
+
                                 }
 
 
+                                if (!foundMismatchingLine)
+                                {
+                                    Console.WriteLine("({0},{1}) CSV1 ({2}) and CSV2 ({3}) composite keys do not match", csv1Index, csv2Index, csv1.GetLine(i).CompositeField, csv2.GetLine(i).CompositeField);
 
+                                }
 
+                                foundMismatchingLine = false;
                             }
 
 
@@ -192,6 +214,7 @@ namespace CsvFilesComparison
                             if (csv1.GetLine(i).CompositeField == csv2.GetLine(i + 1).CompositeField)
                             {
 
+                                Console.WriteLine("({0},{1}) CSV1 ({2}) and CSV2 ({3}) composite keys do not match", csv1Index, csv2Index, csv1.GetLine(i).CompositeField, csv2.GetLine(i).CompositeField);
 
                                 var matchingCsv2Line = csv2Index + 1;
                                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -217,6 +240,8 @@ namespace CsvFilesComparison
                             //check if csv2 is missing line, composite keys at csv1.currentline=1 matches csv2.currentline
                             if (csv1.GetLine(i + 1).CompositeField == csv2.GetLine(i).CompositeField)
                             {
+                                Console.WriteLine("({0},{1}) CSV1 ({2}) and CSV2 ({3}) composite keys do not match", csv1Index, csv2Index, csv1.GetLine(i).CompositeField, csv2.GetLine(i).CompositeField);
+
                                 Console.ForegroundColor = ConsoleColor.Blue;
 
                                 var matchingCsv1Line = csv1Index + 1;
