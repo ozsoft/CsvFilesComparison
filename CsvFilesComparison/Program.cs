@@ -10,10 +10,10 @@ namespace CsvFilesComparison
         {
 
             /*
-                        composite key is unique, order is relevant
-                        composite key is unique, order is not relevant
-                        composite key is not unique, order is relevant 
-                        composite key is not unique, order is not relevant
+                  composite key is unique, order is relevant
+                  composite key is unique, order is not relevant
+                  composite key is not unique, order is relevant 
+                  composite key is not unique, order is not relevant
 
              
 
