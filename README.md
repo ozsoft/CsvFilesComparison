@@ -10,12 +10,13 @@
              */
 
 
-
             //      ASSUMPTION 1: (DEVELOPED)
             //      composite key is unique, order is relevant
-            //      1. Composite key is unique
-            //      2. Mismatch line tolerence 1 line
-            //      3. Order of line is relevant
+            //      handle mismatching with tolenrence of 1 line, so if line missing compare with next line in other csv file and continue comparing thereafter
+            //          1. if composite keys match, check payload matches and report result
+            //          2. if composite keys do not match, report that composite keys do not match and the line of mistmatch
+            //          3. if we notice that either csv 1 or csv 2 are missing a single line (i.e. composite key matches in the next line) then report a missing line in csv and continue comparing
+            //          4. does not handle multiple line missing
 
 
 
@@ -39,7 +40,6 @@
 
             //      ASSUMPTION 4:
             //      composite key is NOT unique, order is NOT relevant,
-            //          find the first matching composite key in csv files and report match, any odd ones left report on which csv (can get a bit complicated if price weight is different in multiple matches)
-            //          report on any non matching composite keys at all
-            //          report on matching keys
-
+            //          1. find the first matching composite key in csv files and report match, any odd ones left report on which csv (can get a bit complicated if price weight is different in multiple matches)
+            //          2. report on any non matching composite keys at all
+            //          3. report on matching keys
