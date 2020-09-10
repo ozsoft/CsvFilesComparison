@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 
 namespace CsvFilesComparison
 {
@@ -20,7 +22,10 @@ namespace CsvFilesComparison
 
 
                    ASSUMPTION SET 1: (DEVELOPED)
-                   composite key is unique, order is relevant
+                   composite key is unique, order is relevant, not currently order, order first?
+                   we can read the csv files line by line if they are already ordered
+                   if not, order files first
+                   possible hashtable use, if we are using multithreading 
                    handle mismatching with tolenrence of 1 line, so if line missing compare with next line in other csv file and continue comparing thereafter
                        1. if composite keys match, check payload matches and report result
                        2. if composite keys do not match, report that composite keys do not match and the line of mistmatch
@@ -63,11 +68,15 @@ namespace CsvFilesComparison
               TODO : import from csv can convert to csv object
               TODO : make mismtching line tolerence configurable
               TODO : write report to text file
+              TODO : Make code that missing lines multithreaded
 
 
               DONE : make price tolerance configurable
 
             */
+
+
+
 
 
             //Pricing discrepancy
@@ -92,11 +101,15 @@ namespace CsvFilesComparison
 
 
             DateTime now = DateTime.Now;
-
-            Console.WriteLine("Test start tie: {0}", now);
             Console.ForegroundColor = ConsoleColor.White;
 
+            Console.WriteLine("Test run time: {0}", now);
+
+
             Console.WriteLine("--------TEST 1---------");
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
 
             Csv test1_csv1 = new Csv();
@@ -114,13 +127,16 @@ namespace CsvFilesComparison
             CompareCsvFiles test1 = new CompareCsvFiles();
             test1.CompareCsvs(test1_csv1, test1_csv2);
 
-
-
-
-
-
-
+            stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+            stopwatch.Restart();
+            stopwatch.Start();
+
 
             Console.WriteLine("--------TEST 2---------");
             //entire csvs match
@@ -139,11 +155,16 @@ namespace CsvFilesComparison
 
             CompareCsvFiles test2 = new CompareCsvFiles();
             test2.CompareCsvs(test2_csv1, test2_csv2);
-
-
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+            stopwatch.Restart();
+            stopwatch.Start();
+
             Console.WriteLine("--------TEST 3---------");
             //payload does not match but composite key matches
 
@@ -162,14 +183,17 @@ namespace CsvFilesComparison
 
             CompareCsvFiles test3 = new CompareCsvFiles();
             test3.CompareCsvs(test3_csv1, test3_csv2);
-
-
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
             Console.WriteLine("--------TEST 4---------");
             //not matching at all on every line of csvs
 
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test4_csv1 = new Csv();
             test4_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
@@ -187,12 +211,16 @@ namespace CsvFilesComparison
 
             CompareCsvFiles test4 = new CompareCsvFiles();
             test4.CompareCsvs(test4_csv1, test4_csv2);
-
-
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
             Console.WriteLine("--------TEST 5---------");
+
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test5_csv1 = new Csv();
             test5_csv1.AddLine("DDS", "GBP,233232,London", 123.56);
@@ -208,13 +236,17 @@ namespace CsvFilesComparison
 
             CompareCsvFiles test5 = new CompareCsvFiles();
             test5.CompareCsvs(test5_csv1, test5_csv2);
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
             Console.WriteLine("--------TEST 6---------");
             //some matching first and then some lines that are not matching
 
 
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test6_csv1 = new Csv();
             test6_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
@@ -233,14 +265,18 @@ namespace CsvFilesComparison
             CompareCsvFiles test6 = new CompareCsvFiles();
             test6.CompareCsvs(test6_csv1, test6_csv2);
 
-
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
 
             Console.WriteLine("--------TEST 7---------");
             //missing line after a successful matching line
 
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test7_csv1 = new Csv();
             test7_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
@@ -259,13 +295,14 @@ namespace CsvFilesComparison
             CompareCsvFiles test7 = new CompareCsvFiles();
             test7.CompareCsvs(test7_csv1, test7_csv2);
 
-
-
-
-
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
 
             Console.WriteLine("--------TEST 8---------");
             //program 1 and program 2 spits out output to csv files in different orders
@@ -273,6 +310,8 @@ namespace CsvFilesComparison
             //and index 2 in csv 1 is index 1 in csv 2
 
 
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test8_csv1 = new Csv();
             test8_csv1.AddLine("ABC", "GBP,233232,London", 123.56);
@@ -292,11 +331,17 @@ namespace CsvFilesComparison
             test8.CompareCsvs(test8_csv1, test8_csv2);
 
 
-
-
             Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
             Console.WriteLine("--------TEST 9---------");
             //no records in csvs
+
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test9_csv1 = new Csv();
             Csv test9_csv2 = new Csv();
@@ -304,12 +349,16 @@ namespace CsvFilesComparison
             CompareCsvFiles test9 = new CompareCsvFiles();
             test9.CompareCsvs(test9_csv1, test9_csv2);
 
-
-
-
             Console.ForegroundColor = ConsoleColor.White;
 
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
             Console.WriteLine("--------TEST 10---------");
+
+            stopwatch.Restart();
+            stopwatch.Start();
 
             Csv test10_csv1 = new Csv();
             test10_csv1.AddLine("AAA", "GBP,233232,London", 123.56);
@@ -340,6 +389,9 @@ namespace CsvFilesComparison
             CompareCsvFiles test10 = new CompareCsvFiles();
             test10.CompareCsvs(test10_csv1, test10_csv2);
 
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
 
         }
 

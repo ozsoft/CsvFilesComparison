@@ -1,18 +1,18 @@
 ﻿<Properties StartupConfiguration="{34C07225-F784-49A0-8E21-B5E0C0CFBC90}|Default">
   <MonoDevelop.Ide.ItemProperties.CsvFilesComparison PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CsvFilesComparison/CompareCsvFiles.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CsvFilesComparison/Program.cs">
     <Files>
-      <File FileName="CsvFilesComparison/Program.cs" Line="352" Column="1" />
-      <File FileName="CsvFilesComparison/Csv.cs" Line="19" Column="10" />
-      <File FileName="CsvFilesComparison/CsvLine.cs" Line="23" Column="16" />
-      <File FileName="CsvFilesComparison/CompareCsvFiles.cs" Line="106" Column="1" />
+      <File FileName="CsvFilesComparison/Program.cs" Line="123" Column="58" />
+      <File FileName="CsvFilesComparison/Csv.cs" />
+      <File FileName="CsvFilesComparison/CsvLine.cs" />
+      <File FileName="CsvFilesComparison/CompareCsvFiles.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CsvFilesComparison" expanded="True">
             <Node name="CsvFilesComparison" expanded="True">
-              <Node name="CompareCsvFiles.cs" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -23,8 +23,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="129" column="1" />
-      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="104" column="1" />
+      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="137" column="1" />
+      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="217" column="1" />
+      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="63" column="1" />
+      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="165" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

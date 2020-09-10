@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 namespace CsvFilesComparison
 {
     public class CompareCsvFiles
@@ -106,7 +108,7 @@ namespace CsvFilesComparison
 
                                 //find multple lines missing in csv1
                                 int countOfMissingLines = 0;
-
+                                /*
                                 try
                                 {
 
@@ -141,17 +143,23 @@ namespace CsvFilesComparison
                                         }
 
                                     }
+
                                 }
                                 catch (Exception e)
                                 {
 
                                 }
+                                */
 
+                                Thread tcsv1 = new Thread(new ThreadStart(() => ThreadedSearchOfMismtachingLinesCsv1(countOfMissingLines, count, csv1, csv2, foundMismatchingLine, i, csv1Index, csv2Index)));
+                                tcsv1.Start();
 
+                                Thread tcsv2 = new Thread(new ThreadStart(() => ThreadedSearchOfMismatchingLinesCsv2(countOfMissingLines, count, csv1, csv2, foundMismatchingLine, i, csv1Index, csv2Index)));
+                                tcsv2.Start();
 
                                 //find multple lines missing in csv2
                                 countOfMissingLines = 0;
-
+                                /*
                                 try
                                 {
                                     for (int j = i; j < count - 1; j++)
@@ -195,6 +203,8 @@ namespace CsvFilesComparison
 
                                 }
 
+                                */
+                                Console.ForegroundColor = ConsoleColor.Red;
 
                                 if (!foundMismatchingLine)
                                 {
@@ -286,6 +296,111 @@ namespace CsvFilesComparison
 
 
             }
+        }
+
+        public static void ThreadedSearchOfMismtachingLinesCsv1(int countOfMissingLines, int count, Csv csv1, Csv csv2, bool foundMismatchingLine, int i, int csv1Index, int csv2Index)
+        {
+
+            try
+            {
+
+                for (int j = i; j < count - 1; j++)
+                {
+                    countOfMissingLines++;
+
+                    if (csv1.GetLine(i).CompositeField == csv2.GetLine(j + 1).CompositeField)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+
+                        Console.WriteLine("CSV1 is missing this many lines: {0}", countOfMissingLines);
+                        foundMismatchingLine = true;
+
+                        //check payload matches
+                        if (csv1.GetLine(i).PayLoad == csv2.GetLine(j + 1).PayLoad)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+
+                            Console.WriteLine("({0},{1}) lines payload matches between CSV1 and CSV2}", i, j + 1);
+
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+
+                            Console.WriteLine("({0},{1}) lines payload does NOT matches between CSV1 and CSV2}", i, j + 1);
+
+                        }
+
+                        //established that we are missing lines in csv1, so shift the index so we can continue comparing the remaining lines
+                        var item = csv1.GetLine(i);
+                        var oldIndex = csv1Index;
+                        csv1.GetList().Insert(oldIndex + (j + 1), item);
+
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+        }
+
+        public static void ThreadedSearchOfMismatchingLinesCsv2(int countOfMissingLines, int count, Csv csv1, Csv csv2, bool foundMismatchingLine, int i, int csv1Index, int csv2Index)
+        {
+
+            try
+            {
+                for (int j = i; j < count - 1; j++)
+                {
+                    countOfMissingLines++;
+
+                    if (csv1.GetLine(j + 1).CompositeField == csv2.GetLine(i).CompositeField)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+
+                        Console.WriteLine("CSV2 is missing this many lines: {0}", countOfMissingLines);
+
+                        foundMismatchingLine = true;
+
+                        //check payload matches
+                        if (csv1.GetLine(j + 1).PayLoad == csv2.GetLine(i).PayLoad)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+
+                            Console.WriteLine("({0},{1}) Payload matches between CSV2 currentline: {1} and CSV1 currentline: {0}", j + 1, i);
+
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+
+                            Console.WriteLine("({0},{1}) Payload does NOT matches between CSV1 and CSV2}", j + 1, i);
+
+                        }
+                        Console.ForegroundColor = ConsoleColor.Blue;
+
+                        Console.WriteLine("({0},{1}) Composite Key matches between CSV1 currentline: {2}, CSV2 currentline: {3}", csv1.GetLine(j + 1).CompositeField, csv2.GetLine(i).CompositeField, j + 1, i);
+
+
+                        //established that we are missing lines in csv2, so shift the index so we can continue comparing the remaining lines
+                        var item = csv2.GetLine(i);
+                        var oldIndex = csv2Index;
+                        csv2.GetList().Insert(oldIndex + (j + 1), item);
+
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
         }
     }
 }
