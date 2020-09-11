@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{34C07225-F784-49A0-8E21-B5E0C0CFBC90}|Default">
   <MonoDevelop.Ide.ItemProperties.CsvFilesComparison PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CsvFilesComparison/Program.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="CsvFilesComparison/Program.cs" Line="123" Column="58" />
-      <File FileName="CsvFilesComparison/Csv.cs" />
-      <File FileName="CsvFilesComparison/CsvLine.cs" />
-      <File FileName="CsvFilesComparison/CompareCsvFiles.cs" />
+      <File FileName="CsvFilesComparison/Program.cs" Line="411" Column="67" />
+      <File FileName="CsvFilesComparison/Csv.cs" Line="32" Column="33" />
+      <File FileName="CsvFilesComparison/CsvLine.cs" Line="23" Column="16" />
+      <File FileName="CsvFilesComparison/CompareCsvFiles.cs" Line="38" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,12 +22,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="137" column="1" />
-      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="217" column="1" />
-      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="63" column="1" />
-      <Breakpoint file="/Users/ozgur/Projects/CsvFilesComparison/CsvFilesComparisonGit/CsvFilesComparison/CsvFilesComparison/CompareCsvFiles.cs" relfile="CsvFilesComparison/CompareCsvFiles.cs" line="165" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

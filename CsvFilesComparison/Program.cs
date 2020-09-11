@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CsvFilesComparison
 {
@@ -21,7 +22,7 @@ namespace CsvFilesComparison
 
 
 
-                   ASSUMPTION SET 1: (DEVELOPED)
+                   ASSUMPTION SET 1: (Started Dev)
                    composite key is unique, order is relevant, not currently order, order first?
                    we can read the csv files line by line if they are already ordered
                    if not, order files first
@@ -66,35 +67,12 @@ namespace CsvFilesComparison
              
              
               TODO : import from csv can convert to csv object
-              TODO : make mismtching line tolerence configurable
               TODO : write report to text file
               TODO : Make code that missing lines multithreaded
 
 
-              DONE : make price tolerance configurable
 
             */
-
-
-
-
-
-            //Pricing discrepancy
-            Program p = new Program();
-
-            FailureLevel f1 = p.PricingDiscrepancy(43.33, 41.43);
-
-            Console.WriteLine(f1);
-
-            FailureLevel f2 = p.PricingDiscrepancy(42.33, 42.42);
-
-            Console.WriteLine(f2);
-
-
-            FailureLevel f3 = p.PricingDiscrepancy(42.331, 42.322);
-
-            Console.WriteLine(f3);
-
 
 
 
@@ -103,7 +81,7 @@ namespace CsvFilesComparison
             DateTime now = DateTime.Now;
             Console.ForegroundColor = ConsoleColor.White;
 
-            Console.WriteLine("Test run time: {0}", now);
+            Console.WriteLine("PROGRAM START TIME: {0}", now);
 
 
             Console.WriteLine("--------TEST 1---------");
@@ -125,12 +103,21 @@ namespace CsvFilesComparison
 
 
             CompareCsvFiles test1 = new CompareCsvFiles();
-            test1.CompareCsvs(test1_csv1, test1_csv2);
+            test1.CompareCsvs(test1_csv1, test1_csv2, 0, 2);
 
             stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -154,10 +141,18 @@ namespace CsvFilesComparison
 
 
             CompareCsvFiles test2 = new CompareCsvFiles();
-            test2.CompareCsvs(test2_csv1, test2_csv2);
+            test2.CompareCsvs(test2_csv1, test2_csv2, 0, 2);
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
+
+
+
 
 
 
@@ -182,10 +177,16 @@ namespace CsvFilesComparison
 
 
             CompareCsvFiles test3 = new CompareCsvFiles();
-            test3.CompareCsvs(test3_csv1, test3_csv2);
+            test3.CompareCsvs(test3_csv1, test3_csv2, 0, 2);
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
+
 
 
 
@@ -217,6 +218,11 @@ namespace CsvFilesComparison
 
 
 
+
+
+
+
+
             Console.WriteLine("--------TEST 5---------");
 
             stopwatch.Restart();
@@ -241,6 +247,12 @@ namespace CsvFilesComparison
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
 
 
+
+
+
+
+
+
             Console.WriteLine("--------TEST 6---------");
             //some matching first and then some lines that are not matching
 
@@ -263,11 +275,17 @@ namespace CsvFilesComparison
 
 
             CompareCsvFiles test6 = new CompareCsvFiles();
-            test6.CompareCsvs(test6_csv1, test6_csv2);
+            test6.CompareCsvs(test6_csv1, test6_csv2, 0, 3);
 
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
+
 
 
 
@@ -293,11 +311,19 @@ namespace CsvFilesComparison
 
 
             CompareCsvFiles test7 = new CompareCsvFiles();
-            test7.CompareCsvs(test7_csv1, test7_csv2);
+            test7.CompareCsvs(test7_csv1, test7_csv2, 0, 3);
 
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
+
+
+
 
 
 
@@ -328,12 +354,19 @@ namespace CsvFilesComparison
 
 
             CompareCsvFiles test8 = new CompareCsvFiles();
-            test8.CompareCsvs(test8_csv1, test8_csv2);
+            test8.CompareCsvs(test8_csv1, test8_csv2, 0, 3);
 
 
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+
+
+
+
+
+
+
 
 
 
@@ -347,7 +380,7 @@ namespace CsvFilesComparison
             Csv test9_csv2 = new Csv();
 
             CompareCsvFiles test9 = new CompareCsvFiles();
-            test9.CompareCsvs(test9_csv1, test9_csv2);
+            //test9.CompareCsvs(test9_csv1, test9_csv2);
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -355,15 +388,35 @@ namespace CsvFilesComparison
 
 
 
+
+
+
+
+
+
             Console.WriteLine("--------TEST 10---------");
 
-            stopwatch.Restart();
-            stopwatch.Start();
 
             Csv test10_csv1 = new Csv();
-            test10_csv1.AddLine("AAA", "GBP,233232,London", 123.56);
-            test10_csv1.AddLine("BBB", "GBP,233232,London", 123.56);
-            test10_csv1.AddLine("CCC", "GBP,233232,London", 123.56);
+            Csv test10_csv2 = new Csv();
+
+            /*
+             * 
+            for (int i = 0; i < 100000; i++)
+            {
+                string random = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Substring(0, 8);
+
+                test10_csv1.AddLine(random, "GBP,233232,London", 123.56);
+                test10_csv2.AddLine(random, "GBP,233232,London", 123.56);
+
+
+            }
+
+            */
+
+            test10_csv1.AddLine("AAA", "GBP,233232,London", 123.561);
+            test10_csv1.AddLine("BBB", "GBP,233232,London", 123.58);
+            test10_csv1.AddLine("CCC", "GBP,233232,London", 123.24);
             test10_csv1.AddLine("DDD", "GBP,233232,London", 123.56);
             test10_csv1.AddLine("EEE", "GBP,233232,London", 123.56);
             test10_csv1.AddLine("FFF", "GBP,233232,London", 123.56);
@@ -373,7 +426,8 @@ namespace CsvFilesComparison
             test10_csv1.AddLine("JJJ", "GBP,233232,London", 123.56);
 
 
-            Csv test10_csv2 = new Csv();
+
+
             test10_csv2.AddLine("AAA", "GBP,233232,London", 123.56);
             test10_csv2.AddLine("BBB", "GBP,233232,London", 123.56);
             test10_csv2.AddLine("CCC", "GBP,233232,London", 123.56);
@@ -385,15 +439,88 @@ namespace CsvFilesComparison
             test10_csv2.AddLine("MMM", "GBP,233232,London", 123.56);
             test10_csv2.AddLine("NNN", "GBP,233232,London", 123.56);
 
+            Thread test10Compare1 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 0, 9)));
+            test10Compare1.Start();
+
+            /*
+            stopwatch.Start();
 
             CompareCsvFiles test10 = new CompareCsvFiles();
-            test10.CompareCsvs(test10_csv1, test10_csv2);
+
+
+            test10.CompareCsvs(test10_csv1, test10_csv2, 0, 100009);
+
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
+            */
+
+
+
+            //Parallel.Invoke(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 0, 100009));
+
+
+
+
+            //bug: diagnal testing of mismatch only within thread, needs to be across all lines
+            //bug:
+
+            /*
+
+            Thread test10Compare1 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 0, 10000)));
+            test10Compare1.Start();
+
+            Thread test10Compare2 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 10001, 20000)));
+            test10Compare2.Start();
+
+
+            Thread test10Compare3 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 20001, 30000)));
+            test10Compare3.Start();
+
+
+            Thread test10Compare4 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 30001, 40000)));
+            test10Compare4.Start();
+
+            Thread test10Compare5 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 40001, 50000)));
+            test10Compare5.Start();
+
+            Thread test10Compare6 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 50001, 60000)));
+            test10Compare6.Start();
+
+            Thread test10Compare7 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 60001, 70000)));
+            test10Compare7.Start();
+
+            Thread test10Compare8 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 70001, 80000)));
+            test10Compare8.Start();
+
+            Thread test10Compare9 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 80001, 90000)));
+            test10Compare9.Start();
+
+            Thread test10Compare10 = new Thread(new ThreadStart(() => CompareCsvsMultiThreaded(test10_csv1, test10_csv2, 90001, 100009)));
+            test10Compare10.Start();
+            */
 
             Console.ForegroundColor = ConsoleColor.White;
+
+
+        }
+
+
+
+
+
+
+        public static void CompareCsvsMultiThreaded(Csv test10_csv1, Csv test10_csv2, int countStartEachThread, int countStopEachThread)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+            CompareCsvFiles test10 = new CompareCsvFiles();
+
+            test10.CompareCsvs(test10_csv1, test10_csv2, countStartEachThread, countStopEachThread);
 
             Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
 
         }
+
 
         public enum FailureLevel
         {
